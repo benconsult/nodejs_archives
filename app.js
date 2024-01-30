@@ -1,15 +1,13 @@
 const exp = require('constants');
 const express = require('express')
-const path = require('path')
+const {products} = require('./data')
 
 const app = express();
-app.use(express.static('./public'));//to display static files
-
+//JSON BASICS
 app.get('/', (req,res)=>{
-    //Alternative 2
-    //res.sendFile(path.resolve(__dirname,'./navbar-app/index.html'))//path method
-})
+  res.json(products)//array of objects -- produxts from data.js
+   })
 
 
 
-app.listen(5000,()=>{console.log("Thisa app is listening on port 5000")})
+app.listen(3000,()=>{console.log("Thisa app is listening on port 5000")})
