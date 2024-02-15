@@ -32,12 +32,7 @@ app.get('/api/products/:productID',(req,res)=>{
         return res.json(singleProduct)
 })
 
-//query string - req.query
-//http://localhost:3000/api/v1/query?name=john&gender=male  for test
-//?search=a&limit=2
 app.get('/api/v1/query',(req,res)=>{
-    //res.send('Hello')
-    //console.log(req.query)
     const {search,limit} = req.query
     let sortedProducts = [...products];//copied the array products
     if(search){
