@@ -31,7 +31,7 @@ app.get('/api/products/:productID',(req,res)=>{
 
         return res.json(singleProduct)
 })
-
+//http://localhost:3000/api/v1/query?search=a&limit=2
 app.get('/api/v1/query',(req,res)=>{
     const {search,limit} = req.query
     let sortedProducts = [...products];//copied the array products
@@ -42,6 +42,11 @@ app.get('/api/v1/query',(req,res)=>{
     }
     if(limit){
         sortedProducts = sortedProducts.slice(0, Number(limit))
+    }
+    if(sortedProducts.length < 1){
+       // res.status(200).send("No products matched your search")
+       //Alternatively 
+       return res.status(200).json({success: true, data: []})
     }
     res.status(200).json(sortedProducts)
 })
