@@ -1,13 +1,11 @@
 const exp = require('constants');
 const express = require('express')
 const app = express();
-const logger = require('./logger')
+const morgan = require('morgan')
 
-//midddleware : req - middle ware - res
-//middleware simplified with app.use()
-//app.use(logger)
-app.use('/api',logger)
-// for /home /api/product etc 
+//3rd party middleware
+app.use(morgan('tiny'))
+
 app.get('/',(req,res)=>{
    
     res.send('Home')
