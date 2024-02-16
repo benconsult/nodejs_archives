@@ -1,18 +1,10 @@
 const exp = require('constants');
 const express = require('express')
 const app = express();
+const logger = require('./logger')
 
 //midddleware : req - middle ware - res
 //To log some stuffs on the sending a response
-const logger = (req,res,next) =>{
-    const method = req.method
-    const url = req.url
-    const time  = new Date().getFullYear()
-    console.log(method,url,time);
-    //res.send('Hello')
-    //alternatively, use next
-    next()//the next method
-}
 
 app.get('/', logger,(req,res)=>{
    
