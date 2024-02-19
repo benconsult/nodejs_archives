@@ -4,6 +4,7 @@ const { resourceUsage } = require('process');
 const app = express();
 const peopleRouter = require('./routes/people') 
 const authRouter = require('./routes/auth') 
+
 //using static asset
 app.use(express.static('./methods-public'))
 
