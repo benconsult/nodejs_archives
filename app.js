@@ -17,8 +17,11 @@ app.get('/api/people', (req, res)=>{
 
 //for form logic
 app.post('/login',(req,res)=>{
-    console.log(req.body)
-    res.send('POST')
+    const {name} = req.body
+    if(name){
+        return res.status(200).send(`Welcome ${name}`)
+    }
+    res.status(401).send('please provide credentials')
 })
 
 app.listen(3000,()=>{console.log("This app is listening on port 3000")})
