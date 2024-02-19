@@ -17,7 +17,7 @@ app.get('/api/people', (req, res)=>{
 
 //for form logic
 app.post('/login',(req,res)=>{
-    const {name} = req.body
+    const {name} = req.body //key provided in the form html
     if(name){
         return res.status(200).send(`Welcome ${name}`)
     }
