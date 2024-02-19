@@ -10,11 +10,22 @@ app.use(express.static('./methods-public'))
 //middleware for form -- parse form data
 app.use(express.urlencoded({extended:false}))
 
+//parse json
+app.use(express.json())
+
 app.get('/api/people', (req, res)=>{
     res.status(200).json({success:true, data:people})
     console.log(req)
 })
 
+//sending through JS
+app.post('/api/people',(req,res)=>{
+    const {name} = req.body
+    if(!name){
+        res.status(400).json({success:false, msg:'please provide a value'})
+    }
+    res.send(201).json({success:true, person:name})
+})
 //for form logic
 app.post('/login',(req,res)=>{
     const {name} = req.body //key provided in the form html
