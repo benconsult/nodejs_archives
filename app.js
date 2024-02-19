@@ -45,4 +45,12 @@ app.post('/api/postman/people',(req,res)=>{
     res.status(201).json({success:true, data: [...people, name]}) // copy of the original plus new name
 })
 
+//put method
+app.put('/api/people/:id',(req,res)=>{
+    const {id} = req.params
+    const {name}= req.body
+    console.log(id,name)
+    res.send('ok')
+})
+
 app.listen(3000,()=>{console.log("This app is listening on port 3000")})
