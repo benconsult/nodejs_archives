@@ -54,6 +54,7 @@ app.put('/api/people/:id',(req,res)=>{
     if(!person){
         return res.status(400).json({success:false, msg:`no person with id ${id}`})
     }
+    //loop theough the people array
   const newPeople = people.map((person)=>{
     if(person.id === Number(id)){
         person.name = name
@@ -61,6 +62,17 @@ app.put('/api/people/:id',(req,res)=>{
     return person
   })
     res.status(200).json({success:true, data: newPeople})
+})
+
+//delete
+app.delete('/api/people/:id', (req,res)=>{
+    const person = people.find((person)=> person.id === Number(req.params.id))
+    if(!person){
+        return res.status(400).json({success:false, msg:`no person with id ${req.params.id}`})
+    }
+    //new array without the person found with the id above
+const newPeople = people.filter((person)=> person.id !== Number(req.params.id))
+ return res.status(200).json({success:true, data: newPeople})
 })
 
 app.listen(3000,()=>{console.log("This app is listening on port 3000")})
