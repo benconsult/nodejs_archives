@@ -18,6 +18,7 @@ app.get('/api/people', (req, res)=>{
     console.log(req)
 })
 
+
 //sending through JS
 app.post('/api/people',(req,res)=>{
     const {name} = req.body
@@ -33,6 +34,15 @@ app.post('/login',(req,res)=>{
         return res.status(200).send(`Welcome ${name}`)
     }
     res.status(401).send('please provide credentials')
+})
+
+//testing with postman updated  -- adding neew name to the existing names
+app.post('/api/postman/people',(req,res)=>{
+    const {name} = req.body
+    if(!name){
+        res.status(400).json({success:false, msg:'please provide a value'})
+    }
+    res.status(201).json({success:true, data: [...people, name]}) // copy of the original plus new name
 })
 
 app.listen(3000,()=>{console.log("This app is listening on port 3000")})
