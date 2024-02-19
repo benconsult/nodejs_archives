@@ -1,22 +1,16 @@
 const exp = require('constants');
 const express = require('express')
 const app = express();
-const morgan = require('morgan')
+//using the people array in data,js
+let {people} = require ('./data')
 
-//3rd party middleware
-app.use(morgan('tiny'))
+//using static asset
+app.use(express.static('./methods-public'))
 
-app.get('/',(req,res)=>{
-   
-    res.send('Home')
+app.get('/api/people', (req, res)=>{
+    res.status(200).json({success:true, data:people})
+    console.log(req)
 })
-app.get('/about',(req,res)=>{
-    res.send('About')
-})
-app.get('/contact',(req,res)=>{
-    res.send('Contact Us')
-})
-app.get('/api/products',(req,res)=>{
-    res.send('My Products')
-})
+
+
 app.listen(3000,()=>{console.log("This app is listening on port 3000")})
